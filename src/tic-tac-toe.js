@@ -55,20 +55,12 @@ class TicTacToe {
         }
       }
     }
-    this.state.noTurns = true;
     this.state.isFinished = true;
     return true;
   }
 
   isDraw() {
-    if (this.state.isFinished === false) {
-      this.state.draw = false;
-      return false
-    } else if (this.state.winner === true) {
-      this.state.draw = false;
-      return false
-    }
-    return true
+    return (this.state.isFinished === true && this.state.winner !== true)
   }
 
   getFieldValue(rowIndex, colIndex) {
