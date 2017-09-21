@@ -28,7 +28,7 @@ class TicTacToe {
       return
     }
 
-    this.state.symbol === 'x' ? this.state.symbol = 'o' : this.state.symbol = 'x'
+    sym === 'x' ? this.state.symbol = 'o' : this.state.symbol = 'x'
 
     this.state.field[rowIndex][columnIndex] = sym;
 
