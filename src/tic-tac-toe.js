@@ -28,7 +28,7 @@ class TicTacToe {
       return
     }
 
-    sym === 'x' ? this.state.symbol = 'o' : this.state.symbol = 'x'
+    sym === 'x' ? this.state.symbol = 'o' : this.state.symbol = 'x';
 
     this.state.field[rowIndex][columnIndex] = sym;
 
@@ -37,11 +37,11 @@ class TicTacToe {
   }
 
   isFinished() {
-    return this.state.isFinished ? this.state.isFinished : false
+    return this.state.isFinished ? this.state.isFinished : false;
   }
 
   getWinner() {
-    return this.state.winner ? this.state.symWin : null
+    return this.state.winner ? this.state.symWin : null;
   }
 
   noMoreTurns() {
@@ -62,7 +62,7 @@ class TicTacToe {
 
   getFieldValue(rowIndex, colIndex) {
     var value = this.state.field[rowIndex][colIndex];
-    return value === "" ? null : value
+    return value === "" ? null : value;
   }
 
   checkWin(sym) {
