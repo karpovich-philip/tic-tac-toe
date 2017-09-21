@@ -22,21 +22,6 @@ class TicTacToe {
 
   nextTurn(rowIndex, columnIndex) {
     var sym = this.state.symbol;
-
-    if (this.state.noTurns) {
-      if (this.state.winner) {
-        this.state.isFinished = true;
-        return
-      } else {
-        this.state.draw = true;
-        return
-      }
-    }
-
-    //if (this.state.isFinished) {
-    //  return;
-    //}
-
     var pos = this.state.field[rowIndex][columnIndex];
 
     if (pos === 'x' || pos === 'o') {
@@ -51,19 +36,10 @@ class TicTacToe {
 
     this.checkWin(sym);
     this.noMoreTurns();
-    this.isFinished();
   }
 
   isFinished() {
-    //return this.state.isFinished ? this.state.symWin : false
-    if (this.state.isFinished) {
-      if (this.state.symWin === '') {
-        this.state.draw = true
-        return false
-      } else {
-        return this.state.symWin
-      }
-    } return false
+    return this.state.isFinished ? this.state.isFinished : false
   }
 
   getWinner() {
