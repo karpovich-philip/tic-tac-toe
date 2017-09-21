@@ -51,51 +51,7 @@ class TicTacToe {
 
     this.state.field[rowIndex][columnIndex] = sym;
 
-    if (this.state.field[0][0] === sym && this.state.field[0][1] === sym && this.state.field[0][2] === sym) {
-      this.state.symWin = sym;
-      this.state.isFinished = true;
-      this.state.winner = true;
-      return
-    } else if (this.state.field[1][0] === sym && this.state.field[1][1] === sym && this.state.field[1][2] === sym) {
-      this.state.symWin = sym;
-      this.state.isFinished = true;
-      this.state.winner = true;
-      return
-    } else if (this.state.field[2][0] === sym && this.state.field[2][1] === sym && this.state.field[2][2] === sym) {
-      this.state.symWin = sym;
-      this.state.isFinished = true;
-      this.state.winner = true;
-      return
-    }
-
-    if (this.state.field[0][0] === sym && this.state.field[1][0] === sym && this.state.field[2][0] === sym) {
-      this.state.symWin = sym;
-      this.state.isFinished = true;
-      this.state.winner = true;
-      return
-    } else if (this.state.field[0][1] === sym && this.state.field[1][1] === sym && this.state.field[2][1] === sym) {
-      this.state.symWin = sym;
-      this.state.isFinished = true;
-      this.state.winner = true;
-      return
-    } else if (this.state.field[0][2] === sym && this.state.field[1][2] === sym && this.state.field[2][2] === sym) {
-      this.state.symWin = sym;
-      this.state.isFinished = true;
-      this.state.winner = true;
-      return
-    }
-
-    if (this.state.field[0][0] === sym && this.state.field[1][1] === sym && this.state.field[2][2] === sym) {
-      this.state.symWin = sym;
-      this.state.isFinished = true;
-      this.state.winner = true;
-    } else if (this.state.field[0][2] === sym && this.state.field[1][1] === sym && this.state.field[2][0] === sym) {
-      this.state.symWin = sym;
-      this.state.isFinished = true;
-      this.state.winner = true;
-    }
-
-
+    this.checkWin(sym);
 
     this.noMoreTurns();
   }
@@ -142,6 +98,52 @@ class TicTacToe {
   getFieldValue(rowIndex, colIndex) {
     var value = this.state.field[rowIndex][colIndex];
     return value === "" ? null : value
+  }
+
+  checkWin(sym) {
+    if (this.state.field[0][0] === sym && this.state.field[0][1] === sym && this.state.field[0][2] === sym) {
+      this.state.symWin = sym;
+      this.state.isFinished = true;
+      this.state.winner = true;
+      return
+    } else if (this.state.field[1][0] === sym && this.state.field[1][1] === sym && this.state.field[1][2] === sym) {
+      this.state.symWin = sym;
+      this.state.isFinished = true;
+      this.state.winner = true;
+      return
+    } else if (this.state.field[2][0] === sym && this.state.field[2][1] === sym && this.state.field[2][2] === sym) {
+      this.state.symWin = sym;
+      this.state.isFinished = true;
+      this.state.winner = true;
+      return
+    }
+
+    if (this.state.field[0][0] === sym && this.state.field[1][0] === sym && this.state.field[2][0] === sym) {
+      this.state.symWin = sym;
+      this.state.isFinished = true;
+      this.state.winner = true;
+      return
+    } else if (this.state.field[0][1] === sym && this.state.field[1][1] === sym && this.state.field[2][1] === sym) {
+      this.state.symWin = sym;
+      this.state.isFinished = true;
+      this.state.winner = true;
+      return
+    } else if (this.state.field[0][2] === sym && this.state.field[1][2] === sym && this.state.field[2][2] === sym) {
+      this.state.symWin = sym;
+      this.state.isFinished = true;
+      this.state.winner = true;
+      return
+    }
+
+    if (this.state.field[0][0] === sym && this.state.field[1][1] === sym && this.state.field[2][2] === sym) {
+      this.state.symWin = sym;
+      this.state.isFinished = true;
+      this.state.winner = true;
+    } else if (this.state.field[0][2] === sym && this.state.field[1][1] === sym && this.state.field[2][0] === sym) {
+      this.state.symWin = sym;
+      this.state.isFinished = true;
+      this.state.winner = true;
+    }
   }
 }
 
