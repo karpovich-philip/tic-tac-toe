@@ -3,7 +3,7 @@ class TicTacToe {
 
     this.state = {
       symbol:     'x',
-      isFinished: null,
+      isFinished: false,
       noTurns:    false,
       winner:     false,
       draw:       false,
@@ -26,18 +26,16 @@ class TicTacToe {
     if (this.state.noTurns) {
       if (this.state.winner) {
         this.state.isFinished = true;
-        this.isFinished();
         return
       } else {
         this.state.draw = true;
-        this.isDraw();
         return
       }
     }
 
-    if (this.state.isFinished) {
-      return;
-    }
+    //if (this.state.isFinished) {
+    //  return;
+    //}
 
     var pos = this.state.field[rowIndex][columnIndex];
 
@@ -52,22 +50,24 @@ class TicTacToe {
     this.state.field[rowIndex][columnIndex] = sym;
 
     this.checkWin(sym);
-
     this.noMoreTurns();
+    this.isFinished();
   }
 
   isFinished() {
-    return this.state.isFinished ?
-      this.state.symWin
-      :
-      null
+    //return this.state.isFinished ? this.state.symWin : false
+    if (this.state.isFinished) {
+      if (this.state.symWin === '') {
+        this.state.draw = true
+        return false
+      } else {
+        return this.state.symWin
+      }
+    } return false
   }
 
   getWinner() {
-    return this.state.winner ?
-      this.state.symWin
-      :
-      null
+    return this.state.winner ? this.state.symWin : null
   }
 
   noMoreTurns() {
@@ -85,7 +85,7 @@ class TicTacToe {
   }
 
   isDraw() {
-    if (this.state.isFinished === null) {
+    if (this.state.isFinished === false) {
       this.state.draw = false;
       return false
     } else if (this.state.winner === true) {
