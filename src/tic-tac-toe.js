@@ -28,7 +28,9 @@ class TicTacToe {
       return
     }
 
-    sym === 'x' ? this.state.symbol = 'o' : this.state.symbol = 'x';
+    if (sym === 'x') {
+      this.state.symbol = 'o'
+    } else this.state.symbol = 'x'
 
     this.state.field[rowIndex][columnIndex] = sym;
 
@@ -57,7 +59,7 @@ class TicTacToe {
   }
 
   isDraw() {
-    return (this.state.isFinished === true && this.state.winner !== true)
+    return (this.state.isFinished && !this.state.winner)
   }
 
   getFieldValue(rowIndex, colIndex) {
