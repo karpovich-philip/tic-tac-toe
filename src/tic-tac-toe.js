@@ -1,4 +1,5 @@
 class TicTacToe {
+
   constructor() {
 
     this.state = {
