@@ -1,18 +1,16 @@
 class TicTacToe {
-
   constructor() {
-
     this.state = {
       symbol:     'x',
       isFinished: false,
       noTurns:    false,
       winner:     false,
       draw:       false,
-      symWin:     '',
+      symWin:     null,
       field:      [
-        ['', '', ''],
-        ['', '', ''],
-        ['', '', '']
+        [null, null, null],
+        [null, null, null],
+        [null, null, null]
       ]
     }
   }
@@ -22,25 +20,20 @@ class TicTacToe {
   }
 
   nextTurn(rowIndex, columnIndex) {
-    var sym = this.state.symbol;
-    var pos = this.state.field[rowIndex][columnIndex];
-
-    if (pos === 'x' || pos === 'o') {
-      return
+    let sym = this.state.symbol;
+    let pos = this.state.field[rowIndex][columnIndex];
+    if (!pos) {
+      if (sym === 'x') {
+        this.state.symbol = 'o';
+      } else this.state.symbol = 'x';
+      this.state.field[rowIndex][columnIndex] = sym;
+      this.checkWin(sym);
+      this.noMoreTurns();
     }
-
-    if (sym === 'x') {
-      this.state.symbol = 'o'
-    } else this.state.symbol = 'x'
-
-    this.state.field[rowIndex][columnIndex] = sym;
-
-    this.checkWin(sym);
-    this.noMoreTurns();
   }
 
   isFinished() {
-    return this.state.isFinished ? this.state.isFinished : false;
+    return this.state.isFinished;
   }
 
   getWinner() {
@@ -48,9 +41,10 @@ class TicTacToe {
   }
 
   noMoreTurns() {
-    for (var i = 0; i < this.state.field.length; i++) {
-      for (var j = 0; j < this.state.field[i].length; j++) {
-        if (this.state.field[i][j] === '') {
+    let field = this.state.field;
+    for (let i = 0; i < field.length; i++) {
+      for (let j = 0; j < field[i].length; j++) {
+        if (field[i][j] === null) {
           return false;
         }
       }
@@ -60,25 +54,24 @@ class TicTacToe {
   }
 
   isDraw() {
-    return (this.state.isFinished && !this.state.winner)
+    return (this.state.isFinished && !this.state.winner);
   }
 
   getFieldValue(rowIndex, colIndex) {
-    var value = this.state.field[rowIndex][colIndex];
-    return value === "" ? null : value;
+    let value = this.state.field[rowIndex][colIndex];
+    return value === null ? null : value;
   }
 
   checkWin(sym) {
-    var fld = this.state.field;
-
-    if (fld[0][0]===sym && fld[0][1]===sym && fld[0][2]===sym ||
-      fld[1][0]===sym && fld[1][1]===sym && fld[1][2]===sym ||
-      fld[2][0]===sym && fld[2][1]===sym && fld[2][2]===sym ||
-      fld[0][0]===sym && fld[1][0]===sym && fld[2][0]===sym ||
-      fld[0][1]===sym && fld[1][1]===sym && fld[2][1]===sym ||
-      fld[0][2]===sym && fld[1][2]===sym && fld[2][2]===sym ||
-      fld[0][0]===sym && fld[1][1]===sym && fld[2][2]===sym ||
-      fld[0][2]===sym && fld[1][1]===sym && fld[2][0]===sym) {
+    let fld = this.state.field;
+    if (fld[0][0] === sym && fld[0][1] === sym && fld[0][2] === sym ||
+      fld[1][0] === sym && fld[1][1] === sym && fld[1][2] === sym ||
+      fld[2][0] === sym && fld[2][1] === sym && fld[2][2] === sym ||
+      fld[0][0] === sym && fld[1][0] === sym && fld[2][0] === sym ||
+      fld[0][1] === sym && fld[1][1] === sym && fld[2][1] === sym ||
+      fld[0][2] === sym && fld[1][2] === sym && fld[2][2] === sym ||
+      fld[0][0] === sym && fld[1][1] === sym && fld[2][2] === sym ||
+      fld[0][2] === sym && fld[1][1] === sym && fld[2][0] === sym) {
       this.state.symWin = sym;
       this.state.isFinished = true;
       this.state.winner = true;
